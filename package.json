@@ -1,0 +1,25 @@
+{
+  "name": "codequest-monorepo",
+  "version": "0.1.0",
+  "description": "Plateforme d'apprentissage et de défis informatiques CodeQuest",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "services/*"
+  ],
+  "scripts": {
+    "dev": "docker-compose up",
+    "dev:down": "docker-compose down",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "keywords": [
+    "codequest",
+    "challenges",
+    "algorithmics",
+    "gamification"
+  ],
+  "author": "Mathys & Co",
+  "license": "UNLICENSED"
+}
