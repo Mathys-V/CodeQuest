@@ -18,13 +18,26 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
       - name: Install dependencies
-        run: npm ci || npm install
+        run: npm install --no-audit --no-fund
 
       - name: Run lint
         run: npm run lint
+
+      - name: Run runner unit tests
+        run: node services/runner/tests/runner.test.js
+
+      - name: Run scoring unit tests
+        run: node apps/api/test/scoring.service.spec.js
+
+      - name: Run challenges integration tests
+        run: node --experimental-strip-types apps/api/test/challenges.integration.spec.js
 
   secret-scan:
     name: Secret Leak Detection
